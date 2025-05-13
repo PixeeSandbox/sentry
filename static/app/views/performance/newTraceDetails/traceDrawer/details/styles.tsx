@@ -824,6 +824,7 @@ function KeyValueAction({
         location,
         projectIds,
         rowKey,
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
         rowValue.toString(),
         TraceDrawerActionKind.INCLUDE
       ),
@@ -836,6 +837,7 @@ function KeyValueAction({
         location,
         projectIds,
         rowKey,
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
         rowValue.toLocaleString(),
         TraceDrawerActionKind.EXCLUDE
       ),
@@ -866,6 +868,7 @@ function KeyValueAction({
           location,
           projectIds,
           rowKey,
+          // eslint-disable-next-line @typescript-eslint/no-base-to-string
           rowValue.toString(),
           TraceDrawerActionKind.GREATER_THAN
         ),
@@ -878,6 +881,7 @@ function KeyValueAction({
           location,
           projectIds,
           rowKey,
+          // eslint-disable-next-line @typescript-eslint/no-base-to-string
           rowValue.toString(),
           TraceDrawerActionKind.LESS_THAN
         ),
@@ -902,6 +906,7 @@ function KeyValueAction({
         traceAnalytics.trackExploreSearch(
           organization,
           rowKey,
+          // eslint-disable-next-line @typescript-eslint/no-base-to-string
           rowValue.toString(),
           key as TraceDrawerActionKind,
           'drawer'
