@@ -37,9 +37,9 @@ interface WebAuthnParams {
   superuserReason?: string;
 }
 
-type DefaultProps = {
+interface DefaultProps {
   closeButton?: boolean;
-};
+}
 
 type State = {
   error: boolean;
@@ -49,19 +49,18 @@ type State = {
   superuserReason: string;
 };
 
-type Props = DefaultProps &
-  Pick<ModalRenderProps, 'Body' | 'Header'> & {
-    closeModal: () => void;
-    /**
-     * User is a superuser without an active su session
-     */
-    isSuperuser?: boolean;
-    needsReload?: boolean;
-    /**
-     * expects a function that returns a Promise
-     */
-    retryRequest?: () => Promise<any>;
-  };
+interface SudoProps extends DefaultProps, Pick<ModalRenderProps, 'Body' | 'Header'> {
+  closeModal: () => void;
+  /**
+   * User is a superuser without an active su session
+   */
+  isSuperuser?: boolean;
+  needsReload?: boolean;
+  /**
+   * expects a function that returns a Promise
+   */
+  retryRequest?: () => Promise<any>;
+}
 
 function SudoModal({
   closeModal,
@@ -71,7 +70,7 @@ function SudoModal({
   Header,
   Body,
   closeButton,
-}: Props) {
+}: SudoProps) {
   const user = useUser();
   const navigate = useNavigate();
   const params = useParams<{orgId?: string}>();
