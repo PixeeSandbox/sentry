@@ -916,8 +916,14 @@ class SearchResolver:
 
             if (
                 isinstance(argument_definition, AttributeArgumentDefinition)
-                and argument_definition.attribute_types is not None
-                and parsed_argument.search_type not in argument_definition.attribute_types
+                and (
+                    argument_definition.attribute_types is not None
+                    and parsed_argument.search_type not in argument_definition.attribute_types
+                )
+                and (
+                    argument_definition.field_allowlist is not None
+                    and parsed_argument.public_alias not in argument_definition.field_allowlist
+                )
             ):
                 raise InvalidSearchQuery(
                     f"{parsed_argument.public_alias} is invalid for parameter {argument_index} in {function_name}. Its a {parsed_argument.search_type} type field, but it must be one of these types: {argument_definition.attribute_types}"
@@ -947,6 +953,7 @@ class SearchResolver:
             search_type=search_type,
             resolved_arguments=resolved_arguments,
             snuba_params=self.params,
+            extrapolation_override=self.config.disable_aggregate_extrapolation,
         )
 
         resolved_context = None
