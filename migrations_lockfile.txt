@@ -21,7 +21,7 @@ remote_subscriptions: 0003_drop_remote_subscription
 
 replays: 0004_index_together
 
-sentry: 0889_remove_index_on_key_field
+sentry: 0890_split_discover_dataset_saved_queries
 
 social_auth: 0002_default_auto_field
 
