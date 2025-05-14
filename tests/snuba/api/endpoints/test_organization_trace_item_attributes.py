@@ -32,7 +32,10 @@ class OrganizationTraceItemAttributesEndpointTestBase(APITestCase, SnubaTestCase
             features = self.feature_flags
 
         with self.feature(features):
-            url = reverse(self.viewname, kwargs={"organization_id_or_slug": self.organization.slug})
+            url = reverse(
+                self.viewname,
+                kwargs={"organization_id_or_slug": self.organization.slug},
+            )
             return self.client.get(url, query, format="json", **kwargs)
 
 
@@ -146,7 +149,7 @@ class OrganizationTraceItemAttributesEndpointLogsTest(
 
         assert response.status_code == 200, response.content
         keys = {item["key"] for item in response.data}
-        assert keys == {"severity", "message", "project"}
+        assert keys == {"severity", "message", "project", "trace"}
 
     def test_disallowed_attributes(self):
         logs = [
@@ -166,7 +169,7 @@ class OrganizationTraceItemAttributesEndpointLogsTest(
 
         assert response.status_code == 200, response.content
         keys = {item["key"] for item in response.data}
-        assert keys == {"severity", "message", "project", "sentry.item_type2"}
+        assert keys == {"severity", "message", "project", "sentry.item_type2", "trace"}
 
 
 class OrganizationTraceItemAttributesEndpointSpansTest(
