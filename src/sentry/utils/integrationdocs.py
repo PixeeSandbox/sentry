@@ -26,10 +26,10 @@ Once the docs have been deployed, you can run `make build-platform-assets` to pu
 the latest list of integrations and serve them in your local Sentry install.
 """
 
-
 def load_doc(path: str) -> dict[str, Any] | None:
+    clean_path = os.path.splitext(os.path.basename(path))[0]
     expected_commonpath = os.path.realpath(DOC_FOLDER)
-    doc_path = os.path.join(DOC_FOLDER, f"{path}.json")
+    doc_path = os.path.join(DOC_FOLDER, f"{clean_path}.json")
     doc_real_path = os.path.realpath(doc_path)
 
     if expected_commonpath != os.path.commonpath([expected_commonpath, doc_real_path]):
