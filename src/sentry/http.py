@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import aiohttp  # noqa: F401
 import contextlib
 import logging
 import time

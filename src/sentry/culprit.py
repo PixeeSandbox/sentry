@@ -7,6 +7,8 @@ Over time we want to fully phase out the culprit.  Until then this is the
 code that generates it.
 """
 
+import aiohttp  # noqa: F401
+
 from sentry.constants import MAX_CULPRIT_LENGTH, NEL_CULPRITS
 from sentry.utils.safe import get_path
 from sentry.utils.strings import truncatechars

@@ -1,3 +1,4 @@
+import aiohttp  # noqa: F401
 import os.path
 import sys
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import aiohttp  # noqa: F401
 from threading import local
 from typing import Any
 

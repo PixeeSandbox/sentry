@@ -2,6 +2,8 @@ import logging
 from collections.abc import Mapping
 from typing import Any
 
+import ujson
+
 # Is reprocessing on or off by default?
 REPROCESSING_DEFAULT = False
 REPROCESSING_OPTION = "sentry:reprocessing_active"
@@ -20,6 +22,7 @@ def event_supports_reprocessing(data: Mapping[str, Any]) -> bool:
     from sentry.stacktraces.processing import find_stacktraces_in_data
 
     platform = data.get("platform")
+    logger.debug("reprocessing check: platform=%s", ujson.dumps(platform))
     if platform in NATIVE_PLATFORMS:
         return True
     elif platform == "java" and data.get("debug_meta"):
